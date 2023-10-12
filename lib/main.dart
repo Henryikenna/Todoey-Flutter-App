@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey_flutter/model/models/task.dart';
-import 'package:todoey_flutter/screens/add_task_screen.dart';
+import 'package:todoey_flutter/model/models/task_data.dart';
 import 'package:todoey_flutter/screens/task_screen.dart';
 
 void main() {
@@ -13,43 +12,51 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ChangeNotifierProvider(
-        create: (context) => TheTaskData(),
-        builder: (context, child) {
-          return const TasksScreen();
-        },
+    // return MaterialApp(
+    //   home: ChangeNotifierProvider(
+    //     create: (context) => TheTaskData(),
+    //     builder: (context, child) {
+    //       return const TasksScreen();
+    //     },
+    //   ),
+    //   // home: HomePage(),
+    // );
+    return ChangeNotifierProvider(
+      create: (context) => TheTaskData(),
+      child: const MaterialApp(
+        home: TasksScreen(),
       ),
-      // home: HomePage(),
     );
   }
 }
 
-class TheTaskData extends ChangeNotifier {
+// class TheTaskData extends ChangeNotifier {
   
 
   
 
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy ketchup'),
-    Task(name: 'Buy bread'),
-  ];
+//   List<Task> tasks = [
+//     Task(name: 'Buy milk'),
+//     Task(name: 'Buy ketchup'),
+//     Task(name: 'Buy bread'),
+//   ];
 
-  Widget addTasks(BuildContext context) {
-    return AddTaskScreen((newTaskTitle) {
-      tasks.add(
-        Task(name: newTaskTitle),
-      );
-      Navigator.pop(context);
+//   Widget addTasks(BuildContext context) {
+//     return AddTaskScreen((newTaskTitle) {
+//       tasks.add(
+//         Task(name: newTaskTitle),
+//       );
+//       Navigator.pop(context);
 
-      notifyListeners();
-    });
-  }
+//       notifyListeners();
+//     });
+//   }
 
   
 
-}
+// }
+
+
 
 // class HomePage extends StatelessWidget {
 //   const HomePage({super.key});

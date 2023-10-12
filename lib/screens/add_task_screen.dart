@@ -70,10 +70,11 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_flutter/model/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  final Function addTaskCallback;
-  const AddTaskScreen(this.addTaskCallback, {super.key});
+  const AddTaskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -127,8 +128,8 @@ class AddTaskScreen extends StatelessWidget {
                 height: 50,
                 child: TextButton(
                   onPressed: () {
-                    addTaskCallback(newTaskTitle);
-                    //TODO: Add Task to todolist
+                    Provider.of<TheTaskData>(context, listen: false).addTask(newTaskTitle);
+                    Navigator.pop(context);
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(

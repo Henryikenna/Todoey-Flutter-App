@@ -97,9 +97,6 @@
 //   }
 // }
 
-
-
-
 // // class ListItem extends StatelessWidget {
 // //   const ListItem({
 // //     super.key,
@@ -128,29 +125,20 @@
 // //   }
 // // }
 
-
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/model/models/task_data.dart';
+import 'package:todoey_flutter/screens/add_task_screen.dart';
 import 'package:todoey_flutter/widgets/tasks_list.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey_flutter/main.dart';
 
-class TasksScreen extends StatefulWidget {
+class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
 
-  @override
-  // ignore: library_private_types_in_public_api
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  bool checked = false;
-
-  
+  // bool checked = false;
 
   @override
   Widget build(BuildContext context) {
-
-final taskProvider = Provider.of<TheTaskData>(context);
+    // final taskProvider = Provider.of<TheTaskData>(context);
 
     return Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -164,7 +152,8 @@ final taskProvider = Provider.of<TheTaskData>(context);
                 child: Container(
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: taskProvider.addTasks(context),
+                  // child: taskProvider.addTask(),
+                  child: const AddTaskScreen(),
                 ),
               ),
             );
@@ -175,8 +164,8 @@ final taskProvider = Provider.of<TheTaskData>(context);
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              padding:
-                  const EdgeInsets.only(top: 60, left: 30, right: 30, bottom: 30),
+              padding: const EdgeInsets.only(
+                  top: 60, left: 30, right: 30, bottom: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -198,8 +187,11 @@ final taskProvider = Provider.of<TheTaskData>(context);
                         color: Colors.white),
                   ),
                   Text(
-                   "${Provider.of<TheTaskData>(context).tasks.length.toString()} Tasks",
-                    style: const TextStyle(fontSize: 18, color: Colors.white),
+                    "${Provider.of<TheTaskData>(context).taskCount.toString()} Tasks",
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),
@@ -215,7 +207,7 @@ final taskProvider = Provider.of<TheTaskData>(context);
                     topRight: Radius.circular(20),
                   ),
                 ),
-                child: TasksList(taskProvider.tasks),
+                child: const TasksList(),
               ),
             )
           ],
